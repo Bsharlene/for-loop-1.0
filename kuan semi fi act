@@ -1,0 +1,244 @@
+import javax.swing.*; // For GUI components like JFrame, JButton, JLabel, etc.
+import java.awt.*; // For graphics, colors, and fonts
+import java.awt.event.*; // For handling events
+import javax.swing.table.DefaultTableModel; // For table model
+import java.util.ArrayList; // For using ArrayList
+import java.io.File; // For file handling
+import javax.imageio.ImageIO; // For loading images
+
+public class BscsInternetaney {
+    // List to store employee information
+    private static ArrayList<String[]> employeeData = new ArrayList<>();
+
+    public static void main(String[] args) {
+        // Create the login frame
+        JFrame loginFrame = new JFrame("Login Form");
+        loginFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        loginFrame.setSize(300, 300); // Set the size of the window
+        loginFrame.setLocationRelativeTo(null); // Center the window
+
+        // Create a custom panel with a background image
+        JPanel loginPanel = new CustomPanel("C:\\Users\\LENOVO IP-1\\OneDrive\\Documents\\mao nani oi.jpg");
+        loginPanel.setLayout(null); // Use absolute positioning
+
+        // Create labels and fields for username and password
+        JLabel usernameLabel = new JLabel("Username:");
+        JTextField usernameField = new JTextField();
+        JLabel passwordLabel = new JLabel("Password:");
+        JPasswordField passwordField = new JPasswordField();
+
+        // Create buttons for login and clear actions
+        JButton loginButton = new JButton("Login");
+        JButton clearButton = new JButton("Clear");
+
+        // Set bounds and styles for components
+        usernameLabel.setBounds(20, 20, 80, 25);
+        usernameLabel.setForeground(Color.WHITE);
+        usernameField.setBounds(120, 20, 150, 25);
+        usernameField.setForeground(Color.WHITE);
+        usernameField.setBackground(Color.BLACK);
+        passwordLabel.setBounds(20, 60, 80, 25);
+        passwordLabel.setForeground(Color.WHITE);
+        passwordField.setBounds(120, 60, 150, 25);
+        passwordField.setForeground(Color.WHITE);
+        passwordField.setBackground(Color.BLACK);
+        loginButton.setBounds(20, 100, 100, 30);
+        clearButton.setBounds(150, 100, 100, 30);
+
+        // Add components to the panel
+        loginPanel.add(usernameLabel);
+        loginPanel.add(usernameField);
+        loginPanel.add(passwordLabel);
+        loginPanel.add(passwordField);
+        loginPanel.add(loginButton);
+        loginPanel.add(clearButton);
+
+        // Add the panel to the frame
+        loginFrame.add(loginPanel);
+
+        // Action listener for the login button
+        loginButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String username = usernameField.getText();
+                char[] password = passwordField.getPassword();
+
+                // Check if the username and password are correct
+                if (username.equals("sha") && String.valueOf(password).equals("123")) {
+                    // Create a new window for the dashboard
+                    JFrame dashboardFrame = new JFrame("Dashboard");
+                    dashboardFrame.setSize(1000, 500);
+                    dashboardFrame.setLocationRelativeTo(null);
+
+                    // Create a panel for the dashboard with a background image
+                    JPanel dashboardPanel = new CustomPanel("C:\\Users\\LENOVO IP-1\\OneDrive\\Documents\\purple-and-gold-.jpg");
+                    dashboardPanel.setLayout(null);
+
+                    // Create buttons for adding and deleting employees
+                    JButton addEmployeeButton = new JButton("Add Employee");
+                    addEmployeeButton.setBounds(20, 20, 120, 30);
+                    JButton deleteEmployeeButton = new JButton("Delete Employee");
+                    deleteEmployeeButton.setBounds(150, 20, 150, 30);
+
+                    // Create a table for displaying employee data
+                    String[] columnNames = {"Employee Name", "Employee ID", "Salary", "Job Title"};
+                    DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);
+                    JTable employeeTable = new JTable(tableModel);
+                    JScrollPane scrollPane = new JScrollPane(employeeTable);
+                    scrollPane.setBounds(160, 90, 800, 350);
+
+                    // Add components to the dashboard panel
+                    dashboardPanel.add(addEmployeeButton);
+                    dashboardPanel.add(deleteEmployeeButton);
+                    dashboardPanel.add(scrollPane);
+                    dashboardFrame.add(dashboardPanel);
+
+                    // Action listener for the "Add Employee" button
+                    addEmployeeButton.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            // Create a new frame for adding an employee
+                            JFrame addEmployeeFrame = new JFrame("Add Employee");
+                            addEmployeeFrame.setSize(500, 450);
+                            addEmployeeFrame.setLocationRelativeTo(null);
+
+                            JPanel addEmployeePanel = new CustomPanel("C:\\Users\\LENOVO IP-1\\OneDrive\\Documents\\BSP.jpg");
+                            addEmployeePanel.setLayout(null);
+
+                            // Create labels and fields for employee information
+                            JLabel empNameLabel = new JLabel("Employee Name:");
+                            JTextField empNameField = new JTextField();
+                            JLabel empIdLabel = new JLabel("Employee ID:");
+                            JTextField empIdField = new JTextField();
+                            JLabel empSalaryLabel = new JLabel("Salary:");
+                            JTextField empSalaryField = new JTextField();
+
+                            // Dropdown for job titles
+                            JLabel jobTitleLabel = new JLabel("Job Title:");
+                            String[] jobTitles = {"Developer", "Analyst", "Project Manager", "Tester"};
+                            JComboBox<String> jobTitleComboBox = new JComboBox<>(jobTitles);
+
+                            JButton submitButton = new JButton("Submit");
+
+                            // Set bounds for all components
+                            empNameLabel.setBounds(20, 20, 150, 25);
+                            empNameField.setBounds(180, 20, 200, 25);
+                            empIdLabel.setBounds(20, 60, 150, 25);
+                            empIdField.setBounds(180, 60, 200, 25);
+                            empSalaryLabel.setBounds(20, 100, 150, 25);
+                            empSalaryField.setBounds(180, 100, 200, 25);
+                            jobTitleLabel.setBounds(20, 140, 150, 25);
+                            jobTitleComboBox.setBounds(180, 140, 200, 25);
+                            submitButton.setBounds(20, 180, 100, 30);
+
+                            // Add components to the add employee panel
+                            addEmployeePanel.add(empNameLabel);
+                            addEmployeePanel.add(empNameField);
+                            addEmployeePanel.add(empIdLabel);
+                            addEmployeePanel.add(empIdField);
+                            addEmployeePanel.add(empSalaryLabel);
+                            addEmployeePanel.add(empSalaryField);
+                            addEmployeePanel.add(jobTitleLabel);
+                            addEmployeePanel.add(jobTitleComboBox);
+                            addEmployeePanel.add(submitButton);
+
+                            // Action listener for the submit button
+                            submitButton.addActionListener(new ActionListener() {
+                                @Override
+                                public void actionPerformed(ActionEvent e) {
+                                    // Get the input values from the form
+                                    String empName = empNameField.getText();
+                                    String empIdStr = empIdField.getText();
+                                    String empSalaryStr = empSalaryField.getText();
+                                    String jobTitle = (String) jobTitleComboBox.getSelectedItem();
+
+                                    try {
+                                        // Parse salary and ID
+                                        double empSalary = Double.parseDouble(empSalaryStr);
+                                        int empId = Integer.parseInt(empIdStr);
+
+                                        // Store the employee data
+                                        String[] employee = {empName, String.valueOf(empId), String.valueOf(empSalary), jobTitle};
+                                        employeeData.add(employee);
+
+                                        // Update the table model with the new employee data
+                                        tableModel.addRow(employee);
+
+                                        // Close the "Add Employee" frame after submission
+                                        addEmployeeFrame.dispose();
+                                    } catch (NumberFormatException ex) {
+                                        // Show an error message if input is invalid
+                                        JOptionPane.showMessageDialog(addEmployeeFrame, "Please enter valid information.", "Error", JOptionPane.ERROR_MESSAGE);
+                                    }
+                                }
+                            });
+
+                            // Add the panel to the frame and make it visible
+                            addEmployeeFrame.add(addEmployeePanel);
+                            addEmployeeFrame.setVisible(true);
+                        }
+                    });
+
+                    // Action listener for the "Delete Employee" button
+                    deleteEmployeeButton.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            int selectedRow = employeeTable.getSelectedRow();
+                            if (selectedRow != -1) {
+                                // Remove the selected row from the table and the data list
+                                tableModel.removeRow(selectedRow);
+                                employeeData.remove(selectedRow);
+                            } else {
+                                // Show an error message if no employee is selected
+                                JOptionPane.showMessageDialog(dashboardFrame, "Please select an employee to delete.", "Error", JOptionPane.ERROR_MESSAGE);
+                            }
+                        }
+                    });
+
+                    // Set the dashboard frame to be visible
+                    dashboardFrame.setVisible(true);
+                    loginFrame.setVisible(false); // Hide the login frame
+                } else {
+                    // Show an error message for invalid login
+                    JOptionPane.showMessageDialog(loginFrame, "Invalid username or password.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
+
+        // Action listener for the Clear button
+        clearButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Clear the username and password fields
+                usernameField.setText("");
+                passwordField.setText("");
+            }
+        });
+
+        // Make the login frame visible
+        loginFrame.setVisible(true);
+    }
+
+    // Custom JPanel class to set a background image
+    static class CustomPanel extends JPanel {
+        private Image backgroundImage;
+
+        public CustomPanel(String imagePath) {
+            try {
+                // Load the background image
+                backgroundImage = ImageIO.read(new File(imagePath));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        @Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            // Draw the background image
+            if (backgroundImage != null) {
+                g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
+            }
+        }
+    }
+}
